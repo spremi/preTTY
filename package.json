@@ -41,7 +41,7 @@
     "grunt-nodemon": "~0.4.1",
     "grunt-angular-templates": "^1.0.3",
     "grunt-dom-munger": "^3.4.0",
-    "grunt-protractor-runner": "^3.0.0",
+    "grunt-protractor-runner": "2.1.2",
     "grunt-injector": "~0.6.1",
     "grunt-karma": "~0.12.1",
     "grunt-build-control": "~0.6.2",
