@@ -1,0 +1,24 @@
+node_modules
+public
+.tmp
+.idea
+client/bower_components
+dist
+/server/config/local.env.js
+npm-debug.log
+
+#
+# preTTY - Files to ignore
+#
+*~
+*.swp
+
+*.patch
+*.diff
+*.orig
+*.rej
+
+#
+# preTTY - Files that shouldn't be ignored
+#
+!.gitignore
