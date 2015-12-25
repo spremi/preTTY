@@ -1,11 +1,20 @@
+//
+// preTTY
+//
+// (c) 2015 Sanjeev Premi (spremi@ymail.com)
+//
+// SPDX-License-Identifier: BSD-3-Clause
+//                          (http://spdx.org/licenses/BSD-3-Clause.html)
+//
+
+
 'use strict';
 
 angular.module('preTtyApp')
-  .controller('MainCtrl', function ($scope, $http) {
-    $scope.awesomeThings = [];
+  .controller('MainCtrl', [ '$scope',
 
-    $http.get('/api/things').success(function(awesomeThings) {
-      $scope.awesomeThings = awesomeThings;
-    });
+    function ($scope) {
+      $scope.dummy = '';
+    }
 
-  });
+  ]);
