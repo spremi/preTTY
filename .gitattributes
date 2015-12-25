@@ -4,3 +4,8 @@
 # preTTY
 #
 *.png binary
+*.eot binary
+*.ttf binary
+*.otf binary
+*.woff binary
+*.svg text
