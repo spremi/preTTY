@@ -14,8 +14,17 @@ angular.module('preTtyApp')
   .directive('ptHeader', function () {
     return {
       templateUrl: 'app/directives/ptHeader/ptHeader.html',
-      restrict: 'EA',
+      restrict: 'E',
+      scope: {},
       link: function () {
-      }
+      },
+      controller: ['$scope',
+        function ($scope) {
+          /**
+           * Flag - Is window maximized?
+           */
+          $scope.isMax = false;
+        }
+      ]
     };
   });

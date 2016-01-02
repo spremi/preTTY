@@ -8,4 +8,26 @@
 -->
 
 
-<div>this is the ptHeader directive</div>
+<md-toolbar>
+  <div class="md-toolbar-tools">
+    <h3>preTTY</h3>
+
+    <span class="flex" flex=""></span>
+
+    <md-button class="md-raised md-icon-button md-accent" aria-label="Minimize">
+      <md-icon md-svg-src="assets/icons/ic_remove.svg"></md-icon>
+    </md-button>
+
+    <md-button ng-if="isMax" class="md-raised md-icon-button md-accent" aria-label="Restore">
+      <md-icon md-svg-src="assets/icons/ic_fullscreen_exit.svg"></md-icon>
+    </md-button>
+
+    <md-button ng-if="!isMax" class="md-raised md-icon-button md-accent" aria-label="Maximize">
+      <md-icon md-svg-src="assets/icons/ic_fullscreen.svg"></md-icon>
+    </md-button>
+
+    <md-button class="md-raised md-icon-button md-accent" aria-label="Close">
+      <md-icon md-svg-src="assets/icons/ic_close.svg"></md-icon>
+    </md-button>
+  </div>
+</md-toolbar>
