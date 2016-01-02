@@ -15,7 +15,8 @@ module.exports = function (grunt) {
     useminPrepare: 'grunt-usemin',
     ngtemplates: 'grunt-angular-templates',
     protractor: 'grunt-protractor-runner',
-    buildcontrol: 'grunt-build-control'
+    buildcontrol: 'grunt-build-control',
+    usebanner: 'grunt-banner'
   });
 
   // Time how long tasks take. Can help when optimizing build times
@@ -539,7 +540,137 @@ module.exports = function (grunt) {
         }
       }
     },
+    usebanner: {
+      html : {
+        options: {
+          position: 'top',
+          linebreak: true,
+          replaceq: new RegExp(
+            '<\\!\\-\\-\n' +
+            '::\\spreTTY\n' +
+            '\:\:\n' +
+            '\:\:\\s\\(c\\) 2016 Sanjeev Premi \\(spremi\\@ymail\\.com\\)\n' +
+            '\:\:\n' +
+            '\:\:\\sSPDX\\-License\\-Identifier\\: BSD\\-3\\-Clause\n' +
+            '\:\:\s+\\(http:\\/\\/spdx.org\\/licenses\\/BSD-3-Clause\\.html\\)\n' +
+            '\\-\\->\n' +
+            '\n' +
+            '\n'
+          ),
+          replace: new RegExp(
+            '<\\!\\-\\-\n' +
+            '::\\spreTTY\n' +
+            '::\n' +
+            '::\\s\\(c\\) 2016 Sanjeev Premi \\(spremi\\@ymail\\.com\\)\n' +
+            '::\n' +
+            '::\\sSPDX\\-License\\-Identifier\\: BSD\\-3\\-Clause\n' +
+            '::\\s+\\(http:\\/\\/spdx.org\\/licenses\\/BSD-3-Clause\\.html\\)\n' +
+            '\\-\\->\n' +
+            '\n' +
+            '\n'
+          ),
+          banner: [
+            '<!--',
+            ':: preTTY',
+            '::',
+            ':: (c) 2016 Sanjeev Premi (spremi@ymail.com)',
+            '::',
+            ':: SPDX-License-Identifier: BSD-3-Clause',
+            '::                          (http://spdx.org/licenses/BSD-3-Clause.html)',
+            '-->',
+            '',
+            ''
+          ].join("\n")
+        },
+        files: {
+          src: [
+            'client/app/**/*.html'
+          ]
+        }
+      },
+      js : {
+        options: {
+          position: 'top',
+          linebreak: true,
+          replace: new RegExp(
+            '\/\/\n' +
+            '\/\/\\spreTTY\n' +
+            '\/\/\n' +
+            '\/\/\\s\\(c\\) 2016 Sanjeev Premi \\(spremi\\@ymail\\.com\\)\n' +
+            '\/\/\n' +
+            '\/\/\\sSPDX\\-License\\-Identifier\\: BSD\\-3\\-Clause\n' +
+            '\/\/\\s+\\(http:\\/\\/spdx.org\\/licenses\\/BSD-3-Clause\\.html\\)\n' +
+            '\/\/\n' +
+            '\n' +
+            '\n'
+          ),
+          banner: [
+            '//',
+            '// preTTY',
+            '//',
+            '// (c) 2016 Sanjeev Premi (spremi@ymail.com)',
+            '//',
+            '// SPDX-License-Identifier: BSD-3-Clause',
+            '//                          (http://spdx.org/licenses/BSD-3-Clause.html)',
+            '//',
+            '',
+            ''
+          ].join("\n")
+        },
+        files: {
+          src: [
+            'client/app/**/*.js',
+            'server/**/*.js',
+          ]
+        }
+      },
+      styl : {
+        options: {
+          position: 'top',
+          linebreak: true,
+          replace: new RegExp(
+            '\/\/\n' +
+            '\/\/ preTTY\n' +
+            '\/\/\n' +
+            '\/\/\\s\\(c\\) 2016 Sanjeev Premi \\(spremi\\@ymail\\.com\\)\n' +
+            '\/\/\n' +
+            '\/\/ SPDX\\-License\\-Identifier\\: BSD\\-3\\-Clause\n' +
+            '\/\/\\s+\\(http:\\/\\/spdx.org\\/licenses\\/BSD-3-Clause\\.html\\)\n' +
+            '\/\/\n' +
+            '\n' +
+            '\n'
+          ),
+          banner: [
+            '//',
+            '// preTTY',
+            '//',
+            '// (c) 2016 Sanjeev Premi (spremi@ymail.com)',
+            '//',
+            '// SPDX-License-Identifier: BSD-3-Clause',
+            '//                          (http://spdx.org/licenses/BSD-3-Clause.html)',
+            '//',
+            '',
+            ''
+          ].join("\n")
+        },
+        files: {
+          src: [
+            'client/app/**/*.styl'
+          ]
+        }
+      }
+    }
   });
+
+
+  //
+  // Used to add copyright banner to source files
+  //
+  grunt.registerTask('add-banners', [
+    'usebanner:html',
+    'usebanner:js',
+    'usebanner:styl'
+  ]);
 
   // Used for delaying livereload until after server has restarted
   grunt.registerTask('wait', function () {
