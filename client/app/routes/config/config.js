@@ -15,7 +15,22 @@ angular.module('preTtyApp')
     $stateProvider
       .state('config', {
         url: '/config',
-        templateUrl: 'app/routes/config/config.html',
-        controller: 'ConfigCtrl'
+        views: {
+          '': {
+            templateUrl: 'app/routes/config/config.html'
+          },
+          'head@config': {
+            templateUrl: 'templates/header.html',
+            controller: 'HeaderCtrl'
+          },
+          'body@config': {
+            templateUrl: 'app/routes/config/body.html',
+            controller: 'ConfigCtrl',
+          },
+          'foot@config': {
+            templateUrl: 'templates/footer.html',
+            controller: 'FooterCtrl'
+          }
+        }
       });
   });
