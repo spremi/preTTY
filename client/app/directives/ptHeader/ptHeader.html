@@ -14,20 +14,9 @@
 
     <span class="flex" flex=""></span>
 
-    <md-button class="md-raised md-icon-button md-accent" aria-label="Minimize">
-      <md-icon md-svg-src="assets/icons/ic_remove.svg"></md-icon>
-    </md-button>
-
-    <md-button ng-if="isMax" class="md-raised md-icon-button md-accent" aria-label="Restore">
-      <md-icon md-svg-src="assets/icons/ic_fullscreen_exit.svg"></md-icon>
-    </md-button>
-
-    <md-button ng-if="!isMax" class="md-raised md-icon-button md-accent" aria-label="Maximize">
-      <md-icon md-svg-src="assets/icons/ic_fullscreen.svg"></md-icon>
-    </md-button>
-
-    <md-button class="md-raised md-icon-button md-accent" aria-label="Close">
-      <md-icon md-svg-src="assets/icons/ic_close.svg"></md-icon>
-    </md-button>
+    <pt-win-icon label="Minimize" icon="ic_remove.svg"></pt-win-icon>
+    <pt-win-icon ng-if="isMax" label="Restore" icon="ic_fullscreen_exit.svg"></pt-win-icon>
+    <pt-win-icon ng-if="!isMax" label="Maximize" icon="ic_fullscreen.svg"></pt-win-icon>
+    <pt-win-icon label="Close" icon="ic_close.svg"></pt-win-icon>
   </div>
 </md-toolbar>
