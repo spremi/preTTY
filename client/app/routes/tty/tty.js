@@ -15,7 +15,23 @@ angular.module('preTtyApp')
     $stateProvider
       .state('tty', {
         url: '/tty',
-        templateUrl: 'app/routes/tty/tty.html',
-        controller: 'TtyCtrl'
+        views: {
+          '': {
+            templateUrl: 'app/routes/tty/tty.html'
+          },
+          'head@tty': {
+            templateUrl: 'templates/header.html',
+            controller: 'HeaderCtrl'
+          },
+          'body@tty': {
+            templateUrl: 'app/routes/tty/body.html',
+            controller: 'TtyCtrl',
+          },
+          'foot@tty': {
+            templateUrl: 'templates/footer.html',
+            controller: 'FooterCtrl'
+          }
+        }
+
       });
   });
