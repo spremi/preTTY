@@ -14,8 +14,17 @@ angular.module('preTtyApp')
   .directive('ptFooter', function () {
     return {
       templateUrl: 'app/directives/ptFooter/ptFooter.html',
-      restrict: 'EA',
+      restrict: 'E',
+      scope: {},
       link: function () {
-      }
+      },
+      controller: ['$scope',
+        function ($scope) {
+          /**
+           * Flag - Are logs available?
+           */
+          $scope.logAvail = false;
+        }
+      ]
     };
   });

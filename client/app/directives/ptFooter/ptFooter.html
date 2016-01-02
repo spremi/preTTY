@@ -8,4 +8,13 @@
 -->
 
 
-<div>this is the ptFooter directive</div>
+<md-toolbar>
+  <div class="md-toolbar-tools">
+    <md-button class="md-icon-button" aria-label="Log availability">
+      <md-icon ng-if="!logAvail" md-svg-src="assets/icons/ic_chat_bubble_outline.svg"></md-icon>
+      <md-icon ng-if="logAvail" md-svg-src="assets/icons/ic_chat_bubble.svg"></md-icon>
+    </md-button>
+
+    <div flex=""></div>
+  </div>
+</md-toolbar>
