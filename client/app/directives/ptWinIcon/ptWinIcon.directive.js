@@ -14,8 +14,22 @@ angular.module('preTtyApp')
   .directive('ptWinIcon', function () {
     return {
       templateUrl: 'app/directives/ptWinIcon/ptWinIcon.html',
-      restrict: 'EA',
+      restrict: 'E',
+      scope: {
+        label: '@',
+        icon: '@'
+      },
       link: function () {
-      }
+      },
+      controller: ['$scope',
+        function ($scope) {
+
+          /**
+           * Flag - Is mouse hovering?
+           */
+          $scope.isHover = false;
+
+        }
+      ]
     };
   });

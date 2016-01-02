@@ -8,4 +8,9 @@
 -->
 
 
-<div>this is the ptWinIcon directive</div>
+<md-button class="md-icon-button md-accent" aria-label="{{label}}"
+  ng-class="{'md-raised':isHover}"
+  ng-mouseenter="isHover=true"
+  ng-mouseleave="isHover=false">
+  <md-icon md-svg-src="assets/icons/{{icon}}"></md-icon>
+</md-button>
