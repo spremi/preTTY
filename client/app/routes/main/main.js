@@ -15,7 +15,22 @@ angular.module('preTtyApp')
     $stateProvider
       .state('main', {
         url: '/',
-        templateUrl: 'app/routes/main/main.html',
-        controller: 'MainCtrl'
+        views: {
+          '': {
+            templateUrl: 'app/routes/main/main.html'
+          },
+          'head@main': {
+            templateUrl: 'templates/header.html',
+            controller: 'HeaderCtrl'
+          },
+          'body@main': {
+            templateUrl: 'app/routes/main/body.html',
+            controller: 'MainCtrl',
+          },
+          'foot@main': {
+            templateUrl: 'templates/footer.html',
+            controller: 'FooterCtrl'
+          }
+        }
       });
   });
