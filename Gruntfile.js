@@ -1,3 +1,13 @@
+//
+// preTTY
+//
+// (c) 2016 Sanjeev Premi (spremi@ymail.com)
+//
+// SPDX-License-Identifier: BSD-3-Clause
+//                          (http://spdx.org/licenses/BSD-3-Clause.html)
+//
+
+
 // Generated on 2015-12-26 using generator-angular-fullstack 2.1.1
 'use strict';
 
