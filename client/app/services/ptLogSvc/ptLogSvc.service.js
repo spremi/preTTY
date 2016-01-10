@@ -57,5 +57,12 @@ angular.module('preTtyApp')
       this.clear = function () {
         this.logs.length = 0;
       };
+
+      /**
+       * Returns availability of log messages
+       */
+      this.check = function () {
+        return this.logs.length > 0 ? true : false;
+      };
     }
   ]);
