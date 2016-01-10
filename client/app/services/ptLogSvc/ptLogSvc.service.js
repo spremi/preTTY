@@ -11,8 +11,8 @@
 'use strict';
 
 angular.module('preTtyApp')
-  .service('ptLogSvc', [ '$document', '$mdToast',
-    function ($document, $mdToast) {
+  .service('ptLogSvc', [ '$rootScope', '$document', '$mdToast', 'ptConst',
+    function ($rootScope, $document, $mdToast, ptConst) {
 
       /**
        * Array of log messages
@@ -42,6 +42,13 @@ angular.module('preTtyApp')
           position    : 'bottom right',
           locals      : {log : log}
         });
+
+        //
+        // Notify listeners
+        //
+        if (this.logs.length === 1) {
+          $rootScope.$emit(ptConst.BCAST.LOG.STATUS, true);
+        }
       };
 
       /**
@@ -56,6 +63,11 @@ angular.module('preTtyApp')
        */
       this.clear = function () {
         this.logs.length = 0;
+
+        //
+        // Notify listeners
+        //
+        $rootScope.$emit(ptConst.BCAST.LOG.STATUS, false);
       };
 
       /**
@@ -63,6 +75,14 @@ angular.module('preTtyApp')
        */
       this.check = function () {
         return this.logs.length > 0 ? true : false;
+      };
+
+      /**
+       * Provide listener for status of log messages
+       */
+      this.listen = function (scope, cb) {
+        var onDestroy = $rootScope.$on(ptConst.BCAST.LOG.STATUS, cb);
+        scope.$on('$destroy', onDestroy);
       };
     }
   ]);
