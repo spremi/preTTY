@@ -11,6 +11,21 @@
 'use strict';
 
 angular.module('preTtyApp')
-  .service('ptPortSvc', function () {
-    // AngularJS will instantiate a singleton by calling "new" on this function
-  });
+  .service('ptPortSvc', [
+    function () {
+      /**
+       * Array of known ports.
+       *
+       * All ports may not be currently active. But we may want to maintain
+       * the data - in anticipation of reconnection.
+       */
+      this.ports = [];
+
+      /**
+       * Return list of available ports
+       */
+      this.list = function () {
+        return this.ports;
+      };
+    }
+  ]);
