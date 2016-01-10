@@ -18,12 +18,24 @@ angular.module('preTtyApp')
       scope: {},
       link: function () {
       },
-      controller: ['$scope',
-        function ($scope) {
+      controller: ['$scope', 'ptLogSvc',
+        function ($scope, ptLogSvc) {
           /**
            * Flag - Are logs available?
            */
-          $scope.logAvail = false;
+          $scope.logAvail = ptLogSvc.check();
+
+          /**
+           * Listen for changes in log status
+           */
+          ptLogSvc.listen($scope, function (event, data) {
+
+            if (data === true) {
+              $scope.logAvail = true;
+            } else {
+              $scope.logAvail = false;
+            }
+          });
         }
       ]
     };
