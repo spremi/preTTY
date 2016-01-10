@@ -11,8 +11,8 @@
 'use strict';
 
 angular.module('preTtyApp')
-  .service('ptLogSvc', [
-    function () {
+  .service('ptLogSvc', [ '$document', '$mdToast',
+    function ($document, $mdToast) {
 
       /**
        * Array of log messages
@@ -30,6 +30,18 @@ angular.module('preTtyApp')
         };
 
         this.logs.push(log);
+
+        //
+        // Show the message in a toast
+        //
+        $mdToast.show({
+          controller  : 'ToastCtrl',
+          templateUrl : 'app/services/ptLogSvc/tpl-toast.html',
+          parent      : $document[0].querySelector('#pt-body'),
+          hideDelay   : 4000,
+          position    : 'bottom right',
+          locals      : {log : log}
+        });
       };
 
       /**
