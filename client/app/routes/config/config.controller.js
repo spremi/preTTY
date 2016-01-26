@@ -11,6 +11,24 @@
 'use strict';
 
 angular.module('preTtyApp')
-  .controller('ConfigCtrl', function ($scope) {
-    $scope.message = 'Hello';
-  });
+  .controller('ConfigCtrl', [ '$scope', 'ptConst', 'ptPortSvc', 'ptLogSvc',
+    function ($scope, ptConst, ptPortSvc, ptLogSvc) {
+
+      //
+      // List of ports
+      //
+      $scope.ports = ptPortSvc.list();
+
+      /**
+       * Toggle connection with port
+       */
+      $scope.toggleConnect = function (port) {
+        if (port.hasOwnProperty('connected')) {
+          port.connected = !port.connected;
+        }
+
+        ptLogSvc.add(ptConst.LOG.DEBUG,
+                     port.name + ' : ' + (port.connected ? 'C' : 'Disc') + 'onnected');
+      };
+    }
+  ]);

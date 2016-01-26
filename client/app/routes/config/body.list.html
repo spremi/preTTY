@@ -8,4 +8,43 @@
 -->
 
 
-<p>This is body (config/list).</p>
+<div layout="column" layout-fill layout-align="center center">
+  <div class="md-whiteframe-5dp pt-config-list">
+
+    <md-toolbar layout="row">
+      <div class="md-toolbar-tools">
+        <h4>Configure Port</h4>
+
+        <span class="flex" flex=""></span>
+
+        <md-button class="md-toolbar-tools md-icon-button" ui-sref="main" aria-label="Back">
+          <md-icon md-svg-src="assets/icons/ic_arrow_back.svg"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+
+    <md-content flex layout-padding>
+      <md-card layout="row" ng-repeat="port in ports" >
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline">{{port.name}}</span>
+            <span class="md-subhead">{{port.phys.comName}}</span>
+          </md-card-title-text>
+        </md-card-title>
+
+        <md-card-actions layout="row" layout-align="end center">
+          <md-button class="md-icon-button md-secondary" ng-click="toggleConnect(port)" aria-label="Connection status">
+            <md-icon ng-if="port.connected" md-svg-src="assets/icons/ic_done.svg"></md-icon>
+            <md-icon ng-if="!port.connected" md-svg-src="assets/icons/ic_link.svg"></md-icon>
+          </md-button>
+
+          <md-button class="md-icon-button md-secondary" ui-sref="config.detail({id: port.id})" aria-label="Configure">
+            <md-icon md-svg-src="assets/icons/ic_settings.svg"></md-icon>
+          </md-button>
+        </md-card-actions>
+      </md-card>
+    </md-content>
+
+
+  </div>
+</div>
