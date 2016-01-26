@@ -64,5 +64,23 @@ angular.module('preTtyApp')
       this.list = function () {
         return this.ports;
       };
+
+      /**
+       * Return port matching specified id.
+       */
+      this.get = function (id) {
+        var port  = {};
+        var found = false;
+        var i;
+
+        for (i = 0; (!found && (i < this.ports.length)); i++) {
+          if (this.ports[i].id === id) {
+            port  = this.ports[i];
+            found = true;
+          }
+        }
+
+        return port;
+      };
     }
   ]);
