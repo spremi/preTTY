@@ -8,4 +8,52 @@
 -->
 
 
-<p>This is body (config/detail).</p>
+<div layout="column" layout-fill layout-align="center center">
+  <div class="md-whiteframe-5dp pt-config-detail">
+
+    <md-toolbar layout="row">
+      <div class="md-toolbar-tools">
+        <h4>Configure {{port.name}}</h4>
+
+        <span class="flex" flex=""></span>
+
+        <md-button class="md-toolbar-tools md-icon-button" ui-sref="config.list" aria-label="Back">
+          <md-icon md-svg-src="assets/icons/ic_arrow_back.svg"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+
+    <md-content flex layout="column" layout-padding>
+      <md-input-container class="md-block">
+        <label>Baud Rate</label>
+        <md-select ng-model="port.conf.baudRate">
+          <md-option ng-repeat="opt in options.baudRate" value="{{opt}}">{{opt}}</md-option>
+        </md-select>
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <label>Data Bits</label>
+        <md-select ng-model="port.conf.dataBits">
+          <md-option ng-repeat="opt in options.dataBits" value="{{opt}}">{{opt}}</md-option>
+        </md-select>
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <label>Parity</label>
+        <md-select ng-model="port.conf.parity">
+          <md-option ng-repeat="opt in options.parity" value="{{opt}}">{{opt}}</md-option>
+        </md-select>
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <label>Stop Bits</label>
+        <md-select ng-model="port.conf.stopBits">
+          <md-option ng-repeat="opt in options.stopBits" value="{{opt}}">{{opt}}</md-option>
+        </md-select>
+      </md-input-container>
+
+      <md-button class="md-raised md-primary">Apply</md-button>
+    </md-content>
+
+  </div>
+</div>
