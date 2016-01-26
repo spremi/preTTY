@@ -11,8 +11,8 @@
 'use strict';
 
 angular.module('preTtyApp')
-  .service('ptPortSvc', [
-    function () {
+  .service('ptPortSvc', [ 'ptConst',
+    function (ptConst) {
       /**
        * Array of known ports.
        *
@@ -30,6 +30,12 @@ angular.module('preTtyApp')
             serialNumber  : 'Dummy_Inc.0000',
             vendorId      : '0x1234',
             productId     : '0x5678'
+          },
+          conf      : {
+            baudRate  : ptConst.CONFIG.BAUDRATE.B115200,
+            dataBits  : ptConst.CONFIG.DATABITS.D8,
+            parity    : ptConst.CONFIG.PARITY.PN,
+            stopBits  : ptConst.CONFIG.STOPBITS.S1
           }
         },
         {
@@ -42,6 +48,12 @@ angular.module('preTtyApp')
             serialNumber  : 'Dummy_Inc.0001',
             vendorId      : '0x1234',
             productId     : '0x567'
+          },
+          conf      : {
+            baudRate  : ptConst.CONFIG.BAUDRATE.B57600,
+            dataBits  : ptConst.CONFIG.DATABITS.D8,
+            parity    : ptConst.CONFIG.PARITY.PE,
+            stopBits  : ptConst.CONFIG.STOPBITS.S1
           }
         }
       ];
