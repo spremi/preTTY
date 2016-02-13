@@ -18,9 +18,15 @@
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
 //
+// Include constants
+//
+var C = require('./components/constants');
+
+
+//
 // Module identifier for logger
 //
-var LOGID = '[S] app: ';
+var LOGID = C.MODULE.APP;
 
 //
 // Start logger
