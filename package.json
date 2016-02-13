@@ -3,18 +3,18 @@
   "version": "0.0.0",
   "main": "server/app.js",
   "dependencies": {
-    "express": "~4.13.4",
-    "morgan": "~1.6.1",
     "body-parser": "~1.15.0",
-    "method-override": "~2.3.5",
-    "serve-favicon": "~2.3.0",
-    "cookie-parser": "~1.4.1",
-    "express-session": "~1.13.0",
-    "errorhandler": "~1.4.3",
+    "composable-middleware": "^0.3.0",
     "compression": "~1.6.1",
-    "lodash": "~4.3.0",
+    "cookie-parser": "~1.4.1",
     "ejs": "~2.4.1",
-    "composable-middleware": "^0.3.0"
+    "errorhandler": "~1.4.3",
+    "express": "~4.13.4",
+    "express-session": "~1.13.0",
+    "lodash": "~4.3.0",
+    "method-override": "~2.3.5",
+    "morgan": "~1.6.1",
+    "serve-favicon": "~2.3.0"
   },
   "devDependencies": {
     "connect-livereload": "~0.5.4",
