@@ -62,6 +62,33 @@ function rspFailure() {
  */
 modserial.list = function (socket) {
   logger.debug(LOGID + 'list()');
+
+  SerialFactory.list(function (err, ports) {
+    var rsp;
+
+    if (err) {
+      logger.error(LOGID + 'list() - Error');
+
+      rsp = rspFailure();
+
+      rsp.err = err;
+     } else {
+      logger.debug(LOGID + 'list() - Ok');
+
+      //
+      // Return 'available' ports only.
+      //
+      var avail = ports.filter(function (port) {
+        return port.productId !== '0xundefined';
+      });
+
+      rsp = rspSuccess();
+
+      rsp.ports = avail;
+    }
+
+    socket.emit(C.SOCKET.SERIAL.RSP.LIST, rsp);
+  });
 };
 
 /**
