@@ -11,52 +11,77 @@
 'use strict';
 
 angular.module('preTtyApp')
-  .service('ptPortSvc', [ 'ptConst',
-    function (ptConst) {
+  .service('ptPortSvc', ['$q', 'ptConst', 'ptSocket',
+    function ($q, ptConst, ptSocket) {
+
+      var self = this;
+
       /**
-       * Array of known ports.
+       * Template object representing a port, including default configuration.
        *
-       * All ports may not be currently active. But we may want to maintain
-       * the data - in anticipation of reconnection.
+       * Maintained here, until save/restore to a file is implemented.
        */
-      this.ports = [
-        {
-          id        : 'port0',
-          name      : 'Port 0',
-          connected : false,
-          phys      : {
-            comName       : '/dev/ttyUSB0',
-            manufacturer  : 'Dummy_Inc.',
-            serialNumber  : 'Dummy_Inc.0000',
-            vendorId      : '0x1234',
-            productId     : '0x5678'
-          },
-          conf      : {
-            baudRate  : ptConst.CONFIG.BAUDRATE.B115200,
-            dataBits  : ptConst.CONFIG.DATABITS.D8,
-            parity    : ptConst.CONFIG.PARITY.PN,
-            stopBits  : ptConst.CONFIG.STOPBITS.S1
-          }
-        },
-        {
-          id        : 'port1',
-          name      : 'Port 1',
-          connected : false,
-          phys      : {
-            comName       : '/dev/ttyUSB1',
-            manufacturer  : 'Dummy_Inc.',
-            serialNumber  : 'Dummy_Inc.0001',
-            vendorId      : '0x1234',
-            productId     : '0x567'
-          },
-          conf      : {
-            baudRate  : ptConst.CONFIG.BAUDRATE.B57600,
-            dataBits  : ptConst.CONFIG.DATABITS.D8,
-            parity    : ptConst.CONFIG.PARITY.PE,
-            stopBits  : ptConst.CONFIG.STOPBITS.S1
-          }
+      var tplPort = {
+        id        : '',
+        name      : '',
+        connected : false,
+        phys      : {},
+        conf      : {
+          baudRate  : ptConst.CONFIG.BAUDRATE.B115200,
+          dataBits  : ptConst.CONFIG.DATABITS.D8,
+          parity    : ptConst.CONFIG.PARITY.PN,
+          stopBits  : ptConst.CONFIG.STOPBITS.S1
         }
-      ];
+      };
+
+      /*
+       * Array of visible serial ports.
+       */
+      this.ports = [];
+
+      //
+      // Deferred objects for each operation that require one
+      //
+      this.deferred = {
+        refresh : null
+      };
+
+
+      /**
+       * Request to get list of available ports
+       */
+      this.refresh = function () {
+        this.deferred.refresh = $q.defer();
+
+        ptSocket.send(ptConst.SOCKET.SERIAL.REQ.LIST);
+
+        return this.deferred.refresh.promise;
+      };
+
+      /**
+       * Register listener for initial list of available ports
+       */
+      ptSocket.register(ptConst.SOCKET.SERIAL.RSP.LIST, function (obj) {
+        if (typeof obj === 'object') {
+        if (obj.status === ptConst.STATUS.OK) {
+
+            for (var i = 0; i < obj.ports.length; i++) {
+              var port = JSON.parse(JSON.stringify(tplPort));
+
+              port.phys = JSON.parse(JSON.stringify(obj.ports[i]));
+              port.name = obj.ports[i].comName.split('/').pop();
+
+              this.ports.push(port);
+            }
+            this.deferred.refresh.resolve(this.ports.length);
+          } else {
+            this.deferred.refresh.reject(obj.err);
+          }
+        } else {
+          this.deferred.refresh.reject('Invalid response');
+        }
+      }.bind(this));
+
 
       /**
        * Return list of available ports
