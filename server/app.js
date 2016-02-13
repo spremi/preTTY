@@ -22,6 +22,20 @@ var config = require('./config/environment');
 // Setup server
 var app = express();
 var server = require('http').createServer(app);
+
+//
+// Add 'socket' for communication
+//
+var socketio = require('socket.io')(server, {
+  serveClient : (config.env === 'production') ? false : true,
+  path        : '/socket.io-client'
+});
+
+require('./config/socketio')(socketio);
+
+//
+// Continue configuring the server
+//
 require('./config/express')(app);
 require('./routes')(app);
 
