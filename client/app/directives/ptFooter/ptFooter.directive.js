@@ -18,8 +18,9 @@ angular.module('preTtyApp')
       scope: {},
       link: function () {
       },
-      controller: ['$scope', 'ptLogSvc',
-        function ($scope, ptLogSvc) {
+      controller: ['$scope', '$state', '$stateParams', 'ptPortSvc', 'ptLogSvc',
+        function ($scope, $state, $stateParams, ptPortSvc, ptLogSvc) {
+
           /**
            * Flag - Are logs available?
            */
@@ -36,6 +37,16 @@ angular.module('preTtyApp')
               $scope.logAvail = false;
             }
           });
+
+          if ($state.is('tty')) {
+            //
+            // Get port configuration
+            //
+            $scope.portId = $stateParams.id;
+
+            $scope.port = ptPortSvc.get($scope.portId);
+          }
+
         }
       ]
     };

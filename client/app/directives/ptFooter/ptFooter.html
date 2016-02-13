@@ -15,6 +15,13 @@
       <md-icon ng-if="logAvail" md-svg-src="assets/icons/ic_chat_bubble.svg"></md-icon>
     </md-button>
 
+    <div ng-if="'tty' | isState" layout="row">
+      <pt-foot-attr data="port.conf.baudRate"></pt-foot-attr>
+      <pt-foot-attr data="port.conf.dataBits"></pt-foot-attr>
+      <pt-foot-attr data="port.conf.parity"></pt-foot-attr>
+      <pt-foot-attr data="port.conf.stopBits"></pt-foot-attr>
+    </div>
+
     <div flex=""></div>
   </div>
 </md-toolbar>
