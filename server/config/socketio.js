@@ -30,6 +30,11 @@ function onConnect(socket) {
   });
 
   console.info('[' + socket.address + '] CONNECTED.');
+
+  //
+  // Register handlers
+  //
+  require('../components/serial/serial.socket.js').register(socket);
 }
 
 /**
