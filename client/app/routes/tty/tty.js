@@ -14,7 +14,7 @@ angular.module('preTtyApp')
   .config(function ($stateProvider) {
     $stateProvider
       .state('tty', {
-        url: '/tty',
+        url: '/tty/:id',
         views: {
           '': {
             templateUrl: 'app/routes/tty/tty.html'

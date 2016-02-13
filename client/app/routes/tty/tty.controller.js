@@ -11,6 +11,16 @@
 'use strict';
 
 angular.module('preTtyApp')
-  .controller('TtyCtrl', function ($scope) {
-    $scope.message = 'Hello';
-  });
+  .controller('TtyCtrl', [ '$scope', '$stateParams', 'ptConst', 'ptPortSvc',
+    function ($scope, $stateParams, ptConst, ptPortSvc) {
+      //
+      // Port Id
+      //
+      $scope.portId = $stateParams.id;
+
+      //
+      // Port object
+      //
+      $scope.port = ptPortSvc.get($scope.portId);
+    }
+  ]);
