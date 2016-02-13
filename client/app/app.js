@@ -15,7 +15,8 @@ angular.module('preTtyApp', [
   'ngResource',
   'ngSanitize',
   'ui.router',
-  'ngMaterial'
+  'ngMaterial',
+  'btford.socket-io'
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
     $urlRouterProvider
