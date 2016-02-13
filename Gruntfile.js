@@ -594,7 +594,8 @@ module.exports = function (grunt) {
         },
         files: {
           src: [
-            'client/app/**/*.html'
+            'client/app/**/*.html',
+            '!client/app/services/ptLogSvc/tpl-toast.html'
           ]
         }
       },
