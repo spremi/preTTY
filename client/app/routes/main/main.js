@@ -31,6 +31,13 @@ angular.module('preTtyApp')
             templateUrl: 'templates/footer.html',
             controller: 'FooterCtrl'
           }
+        },
+        resolve : {
+          init : function (ptPortSvc) {
+            if (ptPortSvc.count() === 0) {
+              return ptPortSvc.refresh();
+            }
+          }
         }
       });
   });
