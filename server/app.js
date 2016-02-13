@@ -17,6 +17,17 @@
 // Set default node environment to development
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
+//
+// Module identifier for logger
+//
+var LOGID = '[S] app: ';
+
+//
+// Start logger
+//
+var logger = require('./components/logger');
+logger.info(LOGID + 'Logger is ready.')
+
 var express = require('express');
 var config = require('./config/environment');
 // Setup server
