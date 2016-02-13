@@ -91,6 +91,13 @@ angular.module('preTtyApp')
       };
 
       /**
+       * Return number ports available
+       */
+      this.count = function () {
+        return this.ports.length;
+      };
+
+      /**
        * Return port matching specified id.
        */
       this.get = function (id) {
