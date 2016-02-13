@@ -8,4 +8,6 @@
 -->
 
 
-<div>this is the ptFootAttr directive</div>
+<div ng-class="isHover ? 'md-whiteframe-z2' : 'md-whiteframe-z1'"
+  ng-mouseenter="isHover=true"
+  ng-mouseleave="isHover=false">{{data}}</div>

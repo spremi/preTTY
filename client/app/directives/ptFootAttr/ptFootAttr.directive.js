@@ -14,8 +14,21 @@ angular.module('preTtyApp')
   .directive('ptFootAttr', function () {
     return {
       templateUrl: 'app/directives/ptFootAttr/ptFootAttr.html',
-      restrict: 'EA',
+      restrict: 'E',
+      scope: {
+        data : '='
+      },
       link: function () {
-      }
+      },
+      controller: ['$scope',
+        function ($scope) {
+
+          /**
+           * Flag - Is mouse hovering?
+           */
+          $scope.isHover = false;
+
+        }
+      ]
     };
   });
