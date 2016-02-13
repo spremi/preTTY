@@ -18,12 +18,22 @@ angular.module('preTtyApp')
       scope: {},
       link: function () {
       },
-      controller: ['$scope',
-        function ($scope) {
+      controller: ['$scope', '$state', '$stateParams', 'ptPortSvc',
+        function ($scope, $state, $stateParams, ptPortSvc) {
           /**
            * Flag - Is window maximized?
            */
           $scope.isMax = false;
+
+          if ($state.is('tty')) {
+            //
+            // Get port configuration
+            //
+            $scope.portId = $stateParams.id;
+
+            $scope.port = ptPortSvc.get($scope.portId);
+          }
+
         }
       ]
     };

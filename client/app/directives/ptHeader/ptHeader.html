@@ -14,6 +14,12 @@
 
     <span class="flex" flex=""></span>
 
+    <div ng-if="'tty' | isState">
+      <h4>{{port.phys.comName}}</h4>
+    </div>
+
+    <span class="flex" flex=""></span>
+
     <pt-win-icon label="Minimize" icon="ic_remove.svg"></pt-win-icon>
     <pt-win-icon ng-if="isMax" label="Restore" icon="ic_fullscreen_exit.svg"></pt-win-icon>
     <pt-win-icon ng-if="!isMax" label="Maximize" icon="ic_fullscreen.svg"></pt-win-icon>
