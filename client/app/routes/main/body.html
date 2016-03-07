@@ -1,0 +1,68 @@
+<!--
+:: preTTY
+::
+:: (c) 2016 Sanjeev Premi (spremi@ymail.com)
+::
+:: SPDX-License-Identifier: BSD-3-Clause
+::                          (http://spdx.org/licenses/BSD-3-Clause.html)
+-->
+
+
+<div layout="column" layout-fill layout-align="center center">
+
+  <div ng-if="ports.length === 0" class="pt-main-info">
+    <md-card>
+      <md-card-title>
+        <md-card-title-text>
+          <span class="md-headline">No Serial Ports</span>
+        </md-card-title-text>
+      </md-card-title>
+      <md-card-content>
+        <p class="md-body-1">
+        The application automatically probes for serial ports on start-up,
+        but no ports were found.
+        </p>
+        <p class="md-body-1">
+        Please connect a serial device. It shall be enumerated automatically
+        within 5 seconds... and this message shall fade away.
+        </p>
+      </md-card-content>
+    </md-card>
+  </div>
+
+  <div ng-if="ports.length > 0" class="md-whiteframe-5dp pt-main-list">
+
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h4>Available Ports</h4>
+      </div>
+    </md-toolbar>
+
+    <md-content flex layout-padding>
+      <md-card layout="row" ng-repeat="port in ports" >
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline">{{port.name}}</span>
+            <span class="md-subhead">{{port.phys.comName}}</span>
+          </md-card-title-text>
+        </md-card-title>
+
+        <md-card-actions layout="row" layout-align="end center">
+          <md-button class="md-icon-button md-secondary" ng-click="toggleConnect(port)" aria-label="Connection status">
+            <md-icon ng-if="port.connected" md-svg-src="assets/icons/ic_done.svg"></md-icon>
+            <md-icon ng-if="!port.connected" md-svg-src="assets/icons/ic_link.svg"></md-icon>
+          </md-button>
+
+          <md-button class="md-icon-button md-secondary" ui-sref="config.detail({id: port.id})" aria-label="Configure">
+            <md-icon md-svg-src="assets/icons/ic_settings.svg"></md-icon>
+          </md-button>
+
+          <md-button class="md-icon-button md-secondary" ui-sref="tty({id: port.id})" aria-label="Configure">
+            <md-icon md-svg-src="assets/icons/ic_present_to_all.svg"></md-icon>
+          </md-button>
+        </md-card-actions>
+      </md-card>
+    </md-content>
+  </div>
+
+</div>
